@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Đoàn Emmanuel – Vietnamese Eucharistic Youth Movement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C8923A;
+    --gold-light: #F0C97A;
+    --gold-dark: #8B5E1E;
+    --navy: #0F2044;
+    --navy-mid: #1A3560;
+    --cream: #FAF7F0;
+    --text: #1A1A1A;
+    --text-muted: #5A5A5A;
+    --white: #FFFFFF;
+    --border: rgba(200,146,58,0.25);
+    --red: #B83232;
+    --green: #2D6A3F;
+    --blue: #1E4D8C;
+    --yellow: #C09820;
+    --brown: #7A4F2E;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,32,68,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,146,58,0.3);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-cross {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 0;
+    list-style: none;
+  }
+  .nav-links li { position: relative; }
+  .nav-links a, .nav-btn {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0 1rem;
+    height: 64px;
+    display: flex; align-items: center;
+    transition: color 0.2s;
+    background: none; border: none; cursor: pointer;
+    white-space: nowrap;
+  }
+  .nav-links a:hover, .nav-btn:hover { color: var(--gold-light); }
+  .dropdown { position: relative; }
+  .dropdown-menu {
+    display: none;
+    position: absolute; top: 64px; left: 0;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    min-width: 200px;
+    z-index: 200;
+  }
+  .dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a {
+    height: auto; padding: 0.65rem 1.2rem;
+    display: block; font-size: 0.8rem;
+    border-bottom: 1px solid rgba(200,146,58,0.12);
+    text-transform: none; letter-spacing: 0;
+  }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.45rem 1.1rem !important;
+    height: auto !important;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    margin-left: 0.5rem;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+  .mobile-menu-btn {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    color: var(--gold-light); font-size: 1.4rem; padding: 0.5rem;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: var(--navy);
+    z-index: 99;
+    overflow-y: auto;
+    padding: 1.5rem;
+  }
+  .mobile-nav.open { display: block; }
+  .mobile-nav a, .mobile-nav-section h4 {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(200,146,58,0.15);
+    font-size: 0.95rem;
+  }
+  .mobile-nav-section h4 {
+    color: var(--gold);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-top: 1.25rem;
+    border-bottom: none;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, #0a1a38 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,146,58,0.08) 0%, transparent 70%);
+  }
+  .hero-ornament {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 2px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .hero h1 span { color: var(--gold-light); font-style: italic; }
+  .hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid rgba(200,146,58,0.6);
+    color: var(--gold-light);
+    padding: 0.8rem 2rem;
+    font-weight: 500;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); background: rgba(200,146,58,0.1); }
+  .hero-cross-divider {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: rgba(200,146,58,0.4);
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before, .section-label::after {
+    content: '';
+    flex: 1; max-width: 40px;
+    height: 1px; background: var(--border);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .section-title.light { color: var(--white); }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.75;
+  }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-header .section-label { justify-content: center; }
+
+  /* ABOUT SECTION */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5px;
+    border: 1.5px solid var(--border);
+  }
+  .about-card {
+    background: var(--white);
+    padding: 2.2rem 1.8rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s;
+    border-right: 1.5px solid var(--border);
+  }
+  .about-card:last-child { border-right: none; }
+  .about-card:hover { background: #FDF9F0; }
+  .about-card-icon {
+    width: 40px; height: 40px;
+    background: var(--navy);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  .about-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .about-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+  .about-card .arrow {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* NGANH */
+  .nganh-bg { background: var(--navy); }
+  .nganh-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  .nganh-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,146,58,0.2);
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+  .nganh-card:hover {
+    background: rgba(200,146,58,0.1);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .nganh-sash {
+    width: 48px; height: 10px;
+    border-radius: 1px;
+    margin: 0 auto 1rem;
+  }
+  .nganh-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .nganh-motto {
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+  .nganh-age {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+  }
+  .nganh-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.75rem;
+    line-height: 1.55;
+  }
+  .nganh-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* EVENTS */
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .event-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    padding: 1.5rem 1.75rem;
+    border-radius: 2px;
+    transition: box-shadow 0.2s;
+  }
+  .event-card:hover { box-shadow: 0 4px 24px rgba(200,146,58,0.12); }
+  .event-date {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .event-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .event-card p { font-size: 0.88rem; color: var(--text-muted); }
+  .event-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(15,32,68,0.07);
+    color: var(--navy);
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    margin-top: 0.75rem;
+  }
+
+  /* RESOURCES */
+  .resources-bg { background: #F5F0E8; }
+  .resources-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .resource-group h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .resource-list { list-style: none; }
+  .resource-list li {
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(200,146,58,0.1);
+    font-size: 0.88rem;
+  }
+  .resource-list li:last-child { border-bottom: none; }
+  .resource-list a {
+    color: var(--text);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.15s;
+  }
+  .resource-list a:hover { color: var(--gold-dark); }
+  .resource-list a::before {
+    content: '›';
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  /* CONTACT / JOIN */
+  .join-bg { background: var(--navy); }
+  .join-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+  .join-inner .section-title { color: var(--white); }
+  .join-form {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .join-row { display: flex; gap: 1rem; }
+  .join-form input, .join-form select, .join-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(200,146,58,0.3);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .join-form input::placeholder, .join-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .join-form input:focus, .join-form select:focus, .join-form textarea:focus {
+    border-color: var(--gold);
+  }
+  .join-form select { appearance: none; cursor: pointer; }
+  .join-form select option { background: var(--navy); color: var(--white); }
+  .join-form textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080E1D;
+    border-top: 1px solid rgba(200,146,58,0.2);
+    padding: 3rem 2rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    margin-bottom: 0.75rem;
+  }
+  .footer-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    max-width: 280px;
+  }
+  .footer-col h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.5rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    max-width: 1100px; margin: 2.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+  /* PAGE VIEWS */
+  .page { display: none; }
+  .page.active { display: block; padding-top: 64px; }
+  .home-page { display: block; }
+
+  /* PAGE HERO */
+  .page-hero {
+    background: var(--navy);
+    padding: 5rem 2rem 3.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(200,146,58,0.2);
+    position: relative;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .page-hero p { color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+  /* NGANH DETAIL PAGE */
+  .nganh-detail-section { padding: 4rem 2rem; }
+  .nganh-detail-inner { max-width: 800px; margin: 0 auto; }
+  .nganh-color-bar {
+    height: 5px; width: 80px; border-radius: 2px; margin-bottom: 1.5rem;
+  }
+  .nganh-detail-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--navy); margin-bottom: 0.4rem;
+  }
+  .nganh-detail-inner .motto {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-dark);
+    margin-bottom: 1.5rem;
+  }
+  .nganh-detail-inner p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+  .nganh-sub-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .nganh-sub-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 2px;
+  }
+  .nganh-sub-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem; color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .nganh-sub-card ul { list-style: none; }
+  .nganh-sub-card ul li {
+    font-size: 0.85rem; color: var(--text-muted);
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(200,146,58,0.1);
+  }
+  .nganh-sub-card ul li:last-child { border-bottom: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nganh-grid { grid-template-columns: repeat(3, 1fr); }
+    .events-grid { grid-template-columns: 1fr; }
+    .resources-cols { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-card { border-right: none; border-bottom: 1.5px solid var(--border); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .nganh-sub-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nganh-grid { grid-template-columns: 1fr 1fr; }
+    .hero { padding-top: 6rem; }
+    .join-row { flex-direction: column; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.34s; }
+  .delay-4 { animation-delay: 0.46s; }
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-brand" onclick="showPage('home')">
+    <div class="nav-cross">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect x="9" y="1" width="4" height="20" rx="1" fill="#C8923A"/>
+        <rect x="1" y="7" width="20" height="4" rx="1" fill="#C8923A"/>
+      </svg>
+    </div>
+    TNTT · Đoàn Emmanuel
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li class="dropdown">
+      <button class="nav-btn">About ▾</button>
+      <div class="dropdown-menu">
+        <a href="#" onclick="showPage('mission')">Our Mission</a>
+        <a href="#" onclick="showPage('team')">Our Team</a>
+        <a href="#" onclick="showPage('history')">Our History</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <button class="nav-btn">Ngành ▾</button>
+      <div class="dropdown-menu">
+        <a href="#" onclick="showPage('aunhi')">Ấu Nhi</a>
+        <a href="#" onclick="showPage('thieunhi')">Thiếu Nhi</a>
+        <a href="#" onclick="showPage('nghiasi')">Nghĩa Sĩ</a>
+        <a href="#" onclick="showPage('hiepsi')">Hiệp Sĩ</a>
+        <a href="#" onclick="showPage('huynhtruong')">Huynh Trưởng</a>
+      </div>
+    </li>
+    <li><a href="#" onclick="showPage('events')">Events</a></li>
+    <li class="dropdown">
+      <button class="nav-btn">Resources ▾</button>
+      <div class="dropdown-menu">
+        <a href="#" onclick="showPage('songs')">Songs</a>
+        <a href="#" onclick="showPage('prayers')">Prayers</a>
+        <a href="#" onclick="showPage('resources')">TDV Resources</a>
+      </div>
+    </li>
+    <li><a href="#" class="nav-cta" onclick="showPage('join')">Join Us</a></li>
+  </ul>
+  <button class="mobile-menu-btn" onclick="toggleMobile()" id="mobileBtn">☰</button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="showPage('home');toggleMobile()">Home</a>
+  <div class="mobile-nav-section"><h4>About</h4></div>
+  <a href="#" onclick="showPage('mission');toggleMobile()">Our Mission</a>
+  <a href="#" onclick="showPage('team');toggleMobile()">Our Team</a>
+  <a href="#" onclick="showPage('history');toggleMobile()">Our History</a>
+  <div class="mobile-nav-section"><h4>Ngành</h4></div>
+  <a href="#" onclick="showPage('aunhi');toggleMobile()">Ấu Nhi</a>
+  <a href="#" onclick="showPage('thieunhi');toggleMobile()">Thiếu Nhi</a>
+  <a href="#" onclick="showPage('nghiasi');toggleMobile()">Nghĩa Sĩ</a>
+  <a href="#" onclick="showPage('hiepsi');toggleMobile()">Hiệp Sĩ</a>
+  <a href="#" onclick="showPage('huynhtruong');toggleMobile()">Huynh Trưởng</a>
+  <div class="mobile-nav-section"><h4>More</h4></div>
+  <a href="#" onclick="showPage('events');toggleMobile()">Events</a>
+  <a href="#" onclick="showPage('songs');toggleMobile()">Songs</a>
+  <a href="#" onclick="showPage('prayers');toggleMobile()">Prayers</a>
+  <a href="#" onclick="showPage('resources');toggleMobile()">TDV Resources</a>
+  <a href="#" onclick="showPage('join');toggleMobile()" style="color:#C8923A;font-weight:600;margin-top:1rem;">Join Us →</a>
+</div>
+
+<!-- ============================================================ -->
+<!-- HOME PAGE -->
+<!-- ============================================================ -->
+<div id="page-home" class="home-page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-ornament"></div>
+    <div class="hero-badge fade-up">Phong Trào Thiếu Nhi Thánh Thể Việt Nam · VEYM</div>
+    <h1 class="fade-up delay-1">Đoàn <span>Emmanuel</span></h1>
+    <p class="hero-subtitle fade-up delay-2">Vietnamese Eucharistic Youth Movement in the USA</p>
+    <p class="hero-tagline fade-up delay-2">Liên Đoàn Biển Đức · St. Benedict League of Chapters</p>
+    <div class="hero-actions fade-up delay-3">
+      <a href="#" class="btn-primary" onclick="showPage('join')">Join Our Community</a>
+      <a href="#" class="btn-outline" onclick="showPage('mission')">Our Mission</a>
+    </div>
+    <div class="hero-cross-divider">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ABOUT CARDS -->
+  <section style="padding: 5rem 2rem; background: var(--cream);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">About Our Đoàn</h2>
+        <p class="section-desc" style="margin: 0 auto;">We are a faith community rooted in the Vietnamese Catholic tradition, nurturing young people through faith, service, and fellowship.</p>
+      </div>
+      <div class="about-grid">
+        <a class="about-card" href="#" onclick="showPage('mission')">
+          <div class="about-card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" fill="#C8923A"/>
+            </svg>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To form young Vietnamese Catholics in faith, love, and service through the Eucharistic spirituality of VEYM.</p>
+          <span class="arrow">Learn More →</span>
+        </a>
+        <a class="about-card" href="#" onclick="showPage('team')">
+          <div class="about-card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="7" r="4" fill="#C8923A"/>
+              <path d="M2 18c0-4 3.6-7 8-7s8 3 8 7" stroke="#C8923A" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3>Our Team</h3>
+          <p>Meet the dedicated Huynh Trưởng leaders who guide and inspire our youth each week with passion and commitment.</p>
+          <span class="arrow">Learn More →</span>
+        </a>
+        <a class="about-card" href="#" onclick="showPage('history')">
+          <div class="about-card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="3" width="14" height="16" rx="1.5" stroke="#C8923A" stroke-width="2" fill="none"/>
+              <path d="M7 8h6M7 12h4" stroke="#C8923A" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Our History</h3>
+          <p>Forty years of faith, community, and service — from our founding to today's thriving Đoàn family.</p>
+          <span class="arrow">Learn More →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- NGANH SECTION -->
+  <section class="nganh-bg">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label" style="color: var(--gold);">Our Divisions</div>
+        <h2 class="section-title light">Ngành · Youth Divisions</h2>
+        <p class="section-desc" style="color: rgba(255,255,255,0.55); margin: 0 auto;">Five age-based divisions, each with its own color, motto, and mission — together forming one community in Christ.</p>
+      </div>
+      <div class="nganh-grid">
+        <a class="nganh-card" href="#" onclick="showPage('aunhi')">
+          <div class="nganh-sash" style="background: var(--green);"></div>
+          <h3>Ấu Nhi</h3>
+          <div class="nganh-motto">Ngoan · Obedience</div>
+          <div class="nganh-age">Ages 6–9 · Seedling Division</div>
+          <p class="nganh-desc">Our youngest members growing in faith, innocence, and love for God.</p>
+          <span class="nganh-link">View Details →</span>
+        </a>
+        <a class="nganh-card" href="#" onclick="showPage('thieunhi')">
+          <div class="nganh-sash" style="background: var(--blue);"></div>
+          <h3>Thiếu Nhi</h3>
+          <div class="nganh-motto">Hy Sinh · Sacrifice</div>
+          <div class="nganh-age">Ages 10–12 · Search Division</div>
+          <p class="nganh-desc">Searching for identity through sacrifice, community, and the Eucharist.</p>
+          <span class="nganh-link">View Details →</span>
+        </a>
+        <a class="nganh-card" href="#" onclick="showPage('nghiasi')">
+          <div class="nganh-sash" style="background: var(--yellow);"></div>
+          <h3>Nghĩa Sĩ</h3>
+          <div class="nganh-motto">Chinh Phục · Conquer</div>
+          <div class="nganh-age">Ages 13–15 · Companion Division</div>
+          <p class="nganh-desc">Conquering challenges and growing in strength and purpose.</p>
+          <span class="nganh-link">View Details →</span>
+        </a>
+        <a class="nganh-card" href="#" onclick="showPage('hiepsi')">
+          <div class="nganh-sash" style="background: var(--brown);"></div>
+          <h3>Hiệp Sĩ</h3>
+          <div class="nganh-motto">Dấn Thân · Serve</div>
+          <div class="nganh-age">Ages 16–17 · Knights Division</div>
+          <p class="nganh-desc">Eucharistic Knights called to serve the Church and community.</p>
+          <span class="nganh-link">View Details →</span>
+        </a>
+        <a class="nganh-card" href="#" onclick="showPage('huynhtruong')">
+          <div class="nganh-sash" style="background: var(--red);"></div>
+          <h3>Huynh Trưởng</h3>
+          <div class="nganh-motto">Phụng Sự · Leadership</div>
+          <div class="nganh-age">Ages 18+ · Youth Leaders</div>
+          <p class="nganh-desc">Guiding the next generation with love, faith, and responsibility.</p>
+          <span class="nganh-link">View Details →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS PREVIEW -->
+  <section style="background: var(--cream);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Calendar</div>
+        <h2 class="section-title">Upcoming Events</h2>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-date">August 15–17, 2025</div>
+          <h3>Lavang XXV Camp</h3>
+          <p>"Forty Years of Memories" — our annual summer camp celebrating 40 years of faith and fellowship.</p>
+          <span class="event-tag">Annual Camp</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">June 22, 2025</div>
+          <h3>Bổn Mạng 2025</h3>
+          <p>Feast Day celebration honoring Our Lady of La Vang with Mass, community, and thanksgiving.</p>
+          <span class="event-tag">Feast Day</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">July 17–20, 2025</div>
+          <h3>Đại Hội Nghĩa Hiệp 2025</h3>
+          <p>Liên Đoàn Biển Đức regional gathering for Hiệp Sĩ and Huynh Trưởng youth leaders.</p>
+          <span class="event-tag">Regional Event</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">Weekly · Sundays</div>
+          <h3>Regular Weekly Meetings</h3>
+          <p>All ngành meet weekly for formation, games, prayer, and community building at our parish.</p>
+          <span class="event-tag">Weekly</span>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 2.5rem;">
+        <a href="#" class="btn-primary" onclick="showPage('events')">View All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="join-bg" id="home-join">
+    <div class="join-inner">
+      <div class="section-label" style="color: var(--gold); justify-content: center;">Be Part of Something Greater</div>
+      <h2 class="section-title" style="color: var(--white);">Join Our Community</h2>
+      <p style="color: rgba(255,255,255,0.55); margin-bottom: 2rem;">Whether you're a child, young adult, or parent — there's a place for you in our Đoàn family.</p>
+      <a href="#" class="btn-primary" onclick="showPage('join')">Sign Up Today →</a>
+    </div>
+  </section>
+
+</div><!-- end home page -->
+
+<!-- ============================================================ -->
+<!-- MISSION PAGE -->
+<!-- ============================================================ -->
+<div id="page-mission" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">About Us</div>
+    <h1>Our Mission</h1>
+    <p>The heart and purpose of Đoàn Emmanuel</p>
+  </div>
+  <section>
+    <div class="section-inner" style="max-width: 760px;">
+      <div class="section-label">VEYM</div>
+      <h2 class="section-title">Vietnamese Eucharistic Youth Movement</h2>
+      <p style="color: var(--text-muted); line-height: 1.85; margin-bottom: 1.5rem; font-size: 1rem;">
+        The Vietnamese Eucharistic Youth Movement (Thiếu Nhi Thánh Thể – TNTT) is a Catholic youth organization dedicated to forming the whole person — spiritually, intellectually, physically, and socially — through Eucharistic spirituality. Our movement is centered on Jesus Christ present in the Eucharist.
+      </p>
+      <p style="color: var(--text-muted); line-height: 1.85; margin-bottom: 2.5rem; font-size: 1rem;">
+        Đoàn Emmanuel, named in honor of Our Lady of La Vang, is part of the St. Benedict League (Liên Đoàn Biển Đức) and serves Vietnamese Catholic families in our community. Since our founding over 40 years ago, we have nurtured generations of faithful young Catholics.
+      </p>
+      <div style="background: var(--navy); padding: 2rem 2.5rem; border-radius: 2px; border-left: 4px solid var(--gold);">
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--white); margin-bottom: 0.75rem;">
+          "To form young Vietnamese Catholics deeply rooted in the Eucharist, guided by Our Lady of La Vang, growing in faith, knowledge, and service."
+        </p>
+        <p style="font-size: 0.8rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase;">Mission Statement</p>
+      </div>
+      <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+        <div style="text-align:center; padding: 1.5rem; background: var(--white); border: 1px solid var(--border);">
+          <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); font-weight: 700;">40+</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem;">Years of Service</div>
+        </div>
+        <div style="text-align:center; padding: 1.5rem; background: var(--white); border: 1px solid var(--border);">
+          <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); font-weight: 700;">5</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem;">Youth Divisions</div>
+        </div>
+        <div style="text-align:center; padding: 1.5rem; background: var(--white); border: 1px solid var(--border);">
+          <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); font-weight: 700;">1</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem;">Community Family</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- TEAM PAGE -->
+<!-- ============================================================ -->
+<div id="page-team" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">About Us</div>
+    <h1>Our Team</h1>
+    <p>The Huynh Trưởng leaders who dedicate their time and hearts</p>
+  </div>
+  <section>
+    <div class="section-inner" style="max-width: 800px;">
+      <p style="color: var(--text-muted); line-height: 1.85; margin-bottom: 2.5rem; font-size: 1rem;">
+        Our Huynh Trưởng (youth leaders) are the backbone of Đoàn Emmanuel. These dedicated volunteers undergo rigorous formation training (Cấp 1, Cấp 2, Cấp 3) to serve our children with the highest level of commitment, faith, and love.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div style="background: var(--white); border: 1px solid var(--border); padding: 1.75rem;">
+          <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">Leadership</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.5rem;">BCH Members</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">The Ban Chấp Hành (BCH) oversees the operations of our Đoàn and ensures faithful formation according to VEYM guidelines.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--border); padding: 1.75rem;">
+          <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">Formation</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.5rem;">Huynh Trưởng Training</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Our leaders are certified through a multi-level training process, growing in their calling to serve youth with excellence and faith.</p>
+        </div>
+      </div>
+      <div style="margin-top: 2rem; padding: 1.75rem; background: #F5F0E8; border: 1px solid var(--border);">
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">
+          <strong style="color: var(--navy);">Want to join our team?</strong> If you are 18+ and feel called to serve Vietnamese Catholic youth, we welcome you to explore becoming a Huynh Trưởng.
+          <br/><a href="#" onclick="showPage('join')" style="color: var(--gold-dark); font-weight: 600;">Contact us to learn more →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- HISTORY PAGE -->
+<!-- ============================================================ -->
+<div id="page-history" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">About Us</div>
+    <h1>Our History</h1>
+    <p>Four decades of faith, community, and service</p>
+  </div>
+  <section>
+    <div class="section-inner" style="max-width: 760px;">
+      <div style="border-left: 2px solid var(--border); padding-left: 2rem;">
+        <div style="margin-bottom: 2.5rem; position: relative;">
+          <div style="position: absolute; left: -2.6rem; top: 0.15rem; width: 12px; height: 12px; background: var(--gold); border-radius: 50;"></div>
+          <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;">1985</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.5rem;">Founded</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.75;">Đoàn Emmanuel was established by a small group of Vietnamese Catholic families committed to preserving faith and culture for their children in the United States.</p>
+        </div>
+        <div style="margin-bottom: 2.5rem; position: relative;">
+          <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;">Early Years</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.5rem;">Doan Truong History</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.75;">Through the years, our Đoàn grew steadily, establishing all five ngành divisions and building strong connections within the Liên Đoàn Biển Đức regional chapter.</p>
+        </div>
+        <div style="margin-bottom: 2.5rem; position: relative;">
+          <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;">Annual Tradition</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.5rem;">Trại Lavang — Annual Summer Camp</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.75;">Our annual Lavang summer camp has become a beloved tradition — a highlight of the year where hundreds of youth and leaders gather for faith, fun, and formation. Lavang XXV marked our 40th anniversary.</p>
+        </div>
+        <div style="position: relative;">
+          <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;">Today</div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.5rem;">40 Years and Counting</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.75;">Today our Đoàn continues to thrive, sending leaders to national competitions, hosting retreats and camps, and forming the next generation of Vietnamese Catholic leaders with the same spirit as our founders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- NGANH DETAIL PAGES (template-based) -->
+<!-- ============================================================ -->
+
+<!-- AU NHI -->
+<div id="page-aunhi" class="page">
+  <div class="page-hero" style="border-bottom: 4px solid var(--green);">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Ngành</div>
+    <h1>Ấu Nhi</h1>
+    <p>Seedling Division · Ages 6–9</p>
+  </div>
+  <div class="nganh-detail-section">
+    <div class="nganh-detail-inner">
+      <div class="nganh-color-bar" style="background: var(--green);"></div>
+      <h2>Ấu Nhi</h2>
+      <p class="motto">"Ngoan" — Obedience</p>
+      <p>Our youngest family members, the Ấu Nhi motto is <em>Ngoan</em>, which translates to "obedience." The các em ngành Ấu wear <strong>green</strong> — the color of a young and growing tree, representing youth, innocence, and new life in Christ.</p>
+      <p>Ấu Nhi formation focuses on simple prayers, love for the Eucharist, and learning to be good, obedient children who reflect God's love in their daily lives at home and at school.</p>
+      <div class="nganh-sub-cards">
+        <div class="nganh-sub-card">
+          <h4>Ấu Nhi Ca Hát (AN Ca)</h4>
+          <ul>
+            <li>Songs for Ấu Nhi division</li>
+            <li>Age-appropriate hymns and songs</li>
+            <li>Available in Resources section</li>
+          </ul>
+        </div>
+        <div class="nganh-sub-card">
+          <h4>Upcoming Events</h4>
+          <ul>
+            <li>Weekly Sunday meetings</li>
+            <li>Lavang XXV Camp — Aug 15–17</li>
+            <li>Bổn Mạng celebration</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="#" class="btn-primary" onclick="showPage('join')">Enroll Your Child →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THIEU NHI -->
+<div id="page-thieunhi" class="page">
+  <div class="page-hero" style="border-bottom: 4px solid var(--blue);">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Ngành</div>
+    <h1>Thiếu Nhi</h1>
+    <p>Search Division · Ages 10–12</p>
+  </div>
+  <div class="nganh-detail-section">
+    <div class="nganh-detail-inner">
+      <div class="nganh-color-bar" style="background: var(--blue);"></div>
+      <h2>Thiếu Nhi</h2>
+      <p class="motto">"Hy Sinh" — Sacrifice</p>
+      <p>The Thiếu Nhi motto is <em>Hy Sinh</em>, meaning "sacrifice." The các em wear <strong>blue</strong> — the color of the endless sea and sky, representing the vast search for identity and the courage to sacrifice for what matters.</p>
+      <p>Thiếu Nhi formation deepens the understanding of the Eucharist, builds community, and encourages young Catholics to embrace sacrifice as a way of growing closer to Christ.</p>
+      <div class="nganh-sub-cards">
+        <div class="nganh-sub-card">
+          <h4>Thiếu Nhi Ca Hát (TN Ca)</h4>
+          <ul>
+            <li>Songs for Thiếu Nhi division</li>
+            <li>Hymns and camp songs</li>
+            <li>Available in Resources section</li>
+          </ul>
+        </div>
+        <div class="nganh-sub-card">
+          <h4>Upcoming Events</h4>
+          <ul>
+            <li>Weekly Sunday meetings</li>
+            <li>Lavang XXV Camp — Aug 15–17</li>
+            <li>Bổn Mạng celebration</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="#" class="btn-primary" onclick="showPage('join')">Join This Division →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NGHIA SI -->
+<div id="page-nghiasi" class="page">
+  <div class="page-hero" style="border-bottom: 4px solid var(--yellow);">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Ngành</div>
+    <h1>Nghĩa Sĩ</h1>
+    <p>Companion Division · Ages 13–15</p>
+  </div>
+  <div class="nganh-detail-section">
+    <div class="nganh-detail-inner">
+      <div class="nganh-color-bar" style="background: var(--yellow);"></div>
+      <h2>Nghĩa Sĩ</h2>
+      <p class="motto">"Chinh Phục" — Conquer</p>
+      <p>The Nghĩa Sĩ motto is <em>Chinh Phục</em>, meaning "conquer." The các em wear <strong>yellow</strong> — the color of sunrise and sunset, representing the conquering light overcoming darkness, and the courage of youth in their faith journey.</p>
+      <p>Formation at this level addresses the challenges of adolescence, identity, and deepening one's personal relationship with Christ and the Church community.</p>
+      <div class="nganh-sub-cards">
+        <div class="nganh-sub-card">
+          <h4>Nghĩa Sĩ Ca Hát (NS Ca)</h4>
+          <ul>
+            <li>Songs for Nghĩa Sĩ division</li>
+            <li>Formation music resources</li>
+            <li>Available in Resources section</li>
+          </ul>
+        </div>
+        <div class="nganh-sub-card">
+          <h4>Upcoming Events</h4>
+          <ul>
+            <li>Weekly Sunday meetings</li>
+            <li>Đại Hội Nghĩa Hiệp — July 17–20</li>
+            <li>Lavang XXV Camp — Aug 15–17</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="#" class="btn-primary" onclick="showPage('join')">Join This Division →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIEP SI -->
+<div id="page-hiepsi" class="page">
+  <div class="page-hero" style="border-bottom: 4px solid var(--brown);">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Ngành</div>
+    <h1>Hiệp Sĩ</h1>
+    <p>Eucharistic Knights Division · Ages 16–17</p>
+  </div>
+  <div class="nganh-detail-section">
+    <div class="nganh-detail-inner">
+      <div class="nganh-color-bar" style="background: var(--brown);"></div>
+      <h2>Hiệp Sĩ</h2>
+      <p class="motto">"Dấn Thân" — Plunge into Service</p>
+      <p>The Hiệp Sĩ motto is <em>Dấn Thân</em>, meaning "plunging headlong into the world." The các em wear <strong>brown</strong> — the color of service and the earth — reminding them to stay grounded while actively serving those around them.</p>
+      <p>Hiệp Sĩ are invited to take on real service roles within the Church and community, preparing them to transition into the Huynh Trưởng leadership path.</p>
+      <div class="nganh-sub-cards">
+        <div class="nganh-sub-card">
+          <h4>Hiệp Sĩ Ca Hát (Hiep Si Ca)</h4>
+          <ul>
+            <li>Songs for Hiệp Sĩ division</li>
+            <li>Service and leadership hymns</li>
+            <li>Available in Resources section</li>
+          </ul>
+        </div>
+        <div class="nganh-sub-card">
+          <h4>Upcoming Events</h4>
+          <ul>
+            <li>Weekly Sunday meetings</li>
+            <li>Đại Hội Nghĩa Hiệp — July 17–20</li>
+            <li>Lavang XXV Camp — Aug 15–17</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="#" class="btn-primary" onclick="showPage('join')">Join This Division →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HUYNH TRUONG -->
+<div id="page-huynhtruong" class="page">
+  <div class="page-hero" style="border-bottom: 4px solid var(--red);">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Ngành</div>
+    <h1>Huynh Trưởng</h1>
+    <p>Youth Leaders · Ages 18+</p>
+  </div>
+  <div class="nganh-detail-section">
+    <div class="nganh-detail-inner">
+      <div class="nganh-color-bar" style="background: var(--red);"></div>
+      <h2>Huynh Trưởng</h2>
+      <p class="motto">"Phụng Sự" — Service</p>
+      <p>The Huynh Trưởng motto is <em>Phụng Sự</em>, meaning "service." They wear <strong>red</strong> — the color symbolizing love, service, sacrifice, and responsibility. Huynh Trưởng are the spiritual older siblings to all the younger ngành.</p>
+      <p>Huynh Trưởng undergo multi-level formation training (Cấp 1, Cấp 2, Cấp 3) and are commissioned to help younger members grow in faith and grow closer to God through example and leadership.</p>
+      <div class="nganh-sub-cards">
+        <div class="nganh-sub-card">
+          <h4>HT Resources</h4>
+          <ul>
+            <li>TDV (Tài Liệu Văn) resources</li>
+            <li>Formation training materials</li>
+            <li>Leadership guides and references</li>
+          </ul>
+        </div>
+        <div class="nganh-sub-card">
+          <h4>Upcoming Events</h4>
+          <ul>
+            <li>HT Retreat — Jan 10–11, 2025</li>
+            <li>Về Đất Hứa VIII — Apr 5–6</li>
+            <li>Lavang XXV Camp — Aug 15–17</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="#" class="btn-primary" onclick="showPage('join')">Become a Huynh Trưởng →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EVENTS PAGE -->
+<!-- ============================================================ -->
+<div id="page-events" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Calendar</div>
+    <h1>Upcoming Events</h1>
+    <p>Stay connected with all Đoàn activities and celebrations</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-date">August 15–17, 2025</div>
+          <h3>Lavang XXV — "Forty Years of Memories"</h3>
+          <p>Our 25th annual Lavang summer camp and 40th anniversary celebration. A multi-day faith camp with Mass, fellowship, competitions, and community.</p>
+          <span class="event-tag">Annual Camp</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">July 17–20, 2025</div>
+          <h3>Đại Hội Nghĩa Hiệp 2025</h3>
+          <p>Liên Đoàn Biển Đức regional gathering for Nghĩa Sĩ and Hiệp Sĩ youth from chapters across the region.</p>
+          <span class="event-tag">Regional Event</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">June 22, 2025</div>
+          <h3>Bổn Mạng 2025</h3>
+          <p>Our annual Feast Day celebration honoring Our Lady of La Vang with a special Mass, dinner, and community gathering.</p>
+          <span class="event-tag">Feast Day</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">April 5–6, 2025</div>
+          <h3>Về Đất Hứa VIII</h3>
+          <p>Sa Mạc Tông Đồ Đội Trưởng Đội Phó — Leadership desert training camp for team leaders and assistants.</p>
+          <span class="event-tag">Leadership Training</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">January 10–11, 2025</div>
+          <h3>Huynh Trưởng Retreat 2025</h3>
+          <p>Annual spiritual retreat for all Huynh Trưởng leaders to renew their calling, deepen prayer, and align for the year ahead.</p>
+          <span class="event-tag">HT Retreat</span>
+        </div>
+        <div class="event-card">
+          <div class="event-date">Every Sunday</div>
+          <h3>Weekly Meetings — All Ngành</h3>
+          <p>All five ngành divisions meet weekly on Sundays for formation, activities, prayer, and community. Contact us for location and times.</p>
+          <span class="event-tag">Weekly</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- SONGS PAGE -->
+<!-- ============================================================ -->
+<div id="page-songs" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Resources</div>
+    <h1>Songs</h1>
+    <p>Official and division songs for TNTT</p>
+  </div>
+  <section class="resources-bg">
+    <div class="section-inner">
+      <div class="resources-cols">
+        <div class="resource-group">
+          <h3>Official Songs (Ca Chính Thức)</h3>
+          <ul class="resource-list">
+            <li><a href="https://veym.net" target="_blank">AN Ca (Ấu Nhi)</a></li>
+            <li><a href="https://veym.net" target="_blank">TN Ca (Thiếu Nhi)</a></li>
+            <li><a href="https://veym.net" target="_blank">NS Ca (Nghĩa Sĩ)</a></li>
+            <li><a href="https://veym.net" target="_blank">Hiep Hanh Ca</a></li>
+            <li><a href="https://veym.net" target="_blank">Quoc Ca Vietnam</a></li>
+            <li><a href="https://veym.net" target="_blank">TN Tan Hanh Ca</a></li>
+          </ul>
+        </div>
+        <div class="resource-group">
+          <h3>Division Songs (Ca Hát Sinh Hoạt)</h3>
+          <ul class="resource-list">
+            <li><a href="https://veym.net" target="_blank">Áu Nhi Ca Hát</a></li>
+            <li><a href="https://veym.net" target="_blank">Thiếu Nhi Ca Hát</a></li>
+            <li><a href="https://veym.net" target="_blank">Nghĩa Sĩ Ca Hát</a></li>
+            <li><a href="https://veym.net" target="_blank">Hiệp Sĩ Ca Hát</a></li>
+          </ul>
+        </div>
+        <div class="resource-group">
+          <h3>More Song Resources</h3>
+          <ul class="resource-list">
+            <li><a href="https://veym.net" target="_blank">English Songs</a></li>
+            <li><a href="https://veym.net" target="_blank">VEYM Official Songs</a></li>
+            <li><a href="https://www.lavangabq.org" target="_blank">Our Lady of Lavang Site</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- PRAYERS PAGE -->
+<!-- ============================================================ -->
+<div id="page-prayers" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Resources</div>
+    <h1>Prayers</h1>
+    <p>Prayer resources for our community</p>
+  </div>
+  <section class="resources-bg">
+    <div class="section-inner" style="max-width: 700px;">
+      <div class="resource-group" style="margin-bottom: 2.5rem;">
+        <h3>Official Prayers</h3>
+        <ul class="resource-list">
+          <li><a href="https://veym.net" target="_blank">Kinh Lay Cha (Our Father)</a></li>
+          <li><a href="https://veym.net" target="_blank">Kinh Kinh Mung (Hail Mary)</a></li>
+          <li><a href="https://veym.net" target="_blank">TNTT Prayers</a></li>
+          <li><a href="https://veym.net" target="_blank">Rosary Guide</a></li>
+        </ul>
+      </div>
+      <div style="background: var(--navy); padding: 2rem 2.5rem; border-radius: 2px;">
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--white); margin-bottom: 0.75rem;">
+          "Our Lady of La Vang, pray for us."
+        </p>
+        <p style="font-size: 0.82rem; color: var(--gold-light); letter-spacing: 0.08em; text-transform: uppercase;">Patroness of our Đoàn</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- RESOURCES PAGE -->
+<!-- ============================================================ -->
+<div id="page-resources" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Resources</div>
+    <h1>TDV Resources</h1>
+    <p>Formation materials and external links for leaders and members</p>
+  </div>
+  <section class="resources-bg">
+    <div class="section-inner">
+      <div class="resources-cols">
+        <div class="resource-group">
+          <h3>VEYM & Organization</h3>
+          <ul class="resource-list">
+            <li><a href="https://veym.net" target="_blank">VEYM National Website</a></li>
+            <li><a href="https://www.liendoanbienduc.org" target="_blank">Liên Đoàn Biển Đức</a></li>
+            <li><a href="https://www.lavangabq.org" target="_blank">Our Lady of Lavang Website</a></li>
+          </ul>
+        </div>
+        <div class="resource-group">
+          <h3>Formation Materials</h3>
+          <ul class="resource-list">
+            <li><a href="https://veym.net" target="_blank">Cấp 1 Training Resources</a></li>
+            <li><a href="https://veym.net" target="_blank">Cấp 2 Training Resources</a></li>
+            <li><a href="https://veym.net" target="_blank">Huynh Trưởng Handbook</a></li>
+            <li><a href="https://veym.net" target="_blank">Curriculum Guides</a></li>
+          </ul>
+        </div>
+        <div class="resource-group">
+          <h3>Huynh Trưởng (HT) Resources</h3>
+          <ul class="resource-list">
+            <li><a href="https://veym.net" target="_blank">Leader Meeting Materials</a></li>
+            <li><a href="https://veym.net" target="_blank">Camp Planning Resources</a></li>
+            <li><a href="https://veym.net" target="_blank">VEYM Formation Documents</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- JOIN PAGE -->
+<!-- ============================================================ -->
+<div id="page-join" class="page">
+  <div class="page-hero">
+    <div class="section-label" style="color: var(--gold); justify-content: center; margin-bottom: 0.75rem;">Community</div>
+    <h1>Join Our Đoàn</h1>
+    <p>Become part of our Vietnamese Catholic youth family</p>
+  </div>
+  <section class="join-bg" style="padding: 5rem 2rem;">
+    <div class="join-inner">
+      <div class="join-form" id="joinForm">
+        <div class="join-row">
+          <input type="text" placeholder="First Name" />
+          <input type="text" placeholder="Last Name" />
+        </div>
+        <input type="email" placeholder="Email Address" />
+        <input type="tel" placeholder="Phone Number (optional)" />
+        <select>
+          <option value="" disabled selected>I am interested in joining as...</option>
+          <option>Child — Ấu Nhi (Ages 6–9)</option>
+          <option>Child — Thiếu Nhi (Ages 10–12)</option>
+          <option>Child — Nghĩa Sĩ (Ages 13–15)</option>
+          <option>Child — Hiệp Sĩ (Ages 16–17)</option>
+          <option>Youth Leader — Huynh Trưởng (18+)</option>
+          <option>Parent / Family Member</option>
+          <option>Supporter / Volunteer</option>
+        </select>
+        <textarea placeholder="Any questions or notes for us? (optional)"></textarea>
+        <button type="button" class="form-submit" onclick="submitForm()">Submit Interest Form</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <p style="color: var(--gold-light); font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem;">Thank you for reaching out!</p>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.95rem;">We will be in touch with you shortly. Welcome to the family!</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- FOOTER (shown on all pages) -->
+<!-- ============================================================ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Đoàn Emmanuel</div>
+      <p class="footer-desc">Vietnamese Eucharistic Youth Movement · Liên Đoàn Biển Đức · St. Benedict League of Chapters. Serving Vietnamese Catholic youth for over 40 years.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('mission')">Our Mission</a></li>
+        <li><a href="#" onclick="showPage('team')">Our Team</a></li>
+        <li><a href="#" onclick="showPage('history')">Our History</a></li>
+        <li><a href="#" onclick="showPage('events')">Events</a></li>
+        <li><a href="#" onclick="showPage('join')">Join Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://veym.net" target="_blank">VEYM National</a></li>
+        <li><a href="https://www.liendoanbienduc.org" target="_blank">Liên Đoàn Biển Đức</a></li>
+        <li><a href="https://www.lavangabq.org" target="_blank">Our Lady of Lavang</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Đoàn Emmanuel · TNTT · VEYM</span>
+    <span>Vietnamese Eucharistic Youth Movement in the USA</span>
+  </div>
+</footer>
+
+<script>
+  function showPage(pageId) {
+    document.querySelectorAll('[id^="page-"]').forEach(function(el) {
+      el.style.display = 'none';
+    });
+    document.getElementById('home-page') && (document.getElementById('home-page').style.display = 'none');
+    var target = document.getElementById('page-' + pageId);
+    if (target) {
+      target.style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    closeMobile();
+  }
+
+  function toggleMobile() {
+    var nav = document.getElementById('mobileNav');
+    var btn = document.getElementById('mobileBtn');
+    var open = nav.classList.toggle('open');
+    btn.textContent = open ? '✕' : '☰';
+  }
+
+  function closeMobile() {
+    var nav = document.getElementById('mobileNav');
+    var btn = document.getElementById('mobileBtn');
+    nav.classList.remove('open');
+    btn.textContent = '☰';
+  }
+
+  function submitForm() {
+    document.getElementById('joinForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  // Init: show home
+  (function() {
+    document.querySelectorAll('[id^="page-"]').forEach(function(el) {
+      el.style.display = 'none';
+    });
+    document.getElementById('page-home').style.display = 'block';
+  })();
+</script>
+
+</body>
+</html>
