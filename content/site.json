@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "eyebrow": "PHONG TRÀO THIẾU NHI THÁNH THỂ VIỆT NAM · VEYM",
+    "title": "Đoàn Emmanuel",
+    "subtitle": "Vietnamese Eucharistic Youth Movement in the USA",
+    "caption": "Liên Đoàn Biển Đức · St. Benedict League of Chapters",
+    "primaryCta": {
+      "label": "Join Our Community",
+      "href": "#join"
+    },
+    "secondaryCta": {
+      "label": "Our Mission",
+      "href": "#mission"
+    }
+  },
+  "about": {
+    "headline": "About Our Đoàn",
+    "description": "We are a faith community rooted in the Vietnamese Catholic tradition, nurturing young people through faith, service, and fellowship.",
+    "cards": [
+      {
+        "title": "Our Mission",
+        "description": "To form young Vietnamese Catholics in faith, love, and service through the Eucharistic spirituality of VEYM.",
+        "href": "#mission"
+      },
+      {
+        "title": "Our Team",
+        "description": "Meet the dedicated Huynh Trưởng leaders who guide and inspire our youth each week with passion and commitment.",
+        "href": "#team"
+      },
+      {
+        "title": "Our History",
+        "description": "Forty years of faith, community, and service — from our founding to today’s thriving Đoàn family.",
+        "href": "#history"
+      }
+    ]
+  },
+  "divisionsIntro": {
+    "eyebrow": "Our Divisions",
+    "headline": "Ngành · Youth Divisions",
+    "description": "Five age-based divisions, each with its own color, motto, and mission — together forming one community in Christ."
+  },
+  "eventsIntro": {
+    "eyebrow": "Calendar",
+    "headline": "Upcoming Events",
+    "description": "Stay connected with all Đoàn activities and celebrations."
+  },
+  "join": {
+    "eyebrow": "Community",
+    "headline": "Join Our Đoàn",
+    "description": "Become part of our Vietnamese Catholic youth family."
+  }
+}
