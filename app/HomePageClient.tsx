@@ -200,47 +200,34 @@ export default function HomePageClient({ homeContent, divisions, events, gallery
           </div>
         </section>
 
-        {/* Events Preview */}
-        <section id="events" className="bg-white py-24">
+        {/* Announcements */}
+        <section id="announcements" className="bg-white py-24">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-14 text-center">
               <p className="mx-auto mb-3 inline-flex items-center justify-center rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-gold">
-                Calendar
+                Updates
               </p>
-              <h2 className="text-4xl font-bold text-navy sm:text-5xl">Upcoming Events</h2>
+              <h2 className="text-4xl font-bold text-navy sm:text-5xl">Announcements</h2>
               <p className="mx-auto mt-4 max-w-2xl text-base text-text-muted">
-                Stay connected with all Đoàn activities and celebrations.
+                Stay up to date with the latest news from Đoàn Emmanuel.
               </p>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
-              {events.map((event) => (
-                <Link
-                  key={event.slug}
-                  href="/events"
-                  className="group flex gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded-xl bg-navy text-white">
-                    <span className="text-xs font-bold uppercase text-gold">{new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</span>
-                    <span className="text-2xl font-bold">{new Date(event.date).getDate()}</span>
-                    <span className="text-xs text-white/50">{new Date(event.date).getFullYear()}</span>
-                  </div>
-                  <div>
-                    <div className="mb-2 inline-flex rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
-                      {event.type}
-                    </div>
-                    <h3 className="text-lg font-bold text-navy group-hover:text-gold">{event.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-text-muted">{event.description}</p>
-                  </div>
-                </Link>
-              ))}
+              <div className="rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-10 text-center lg:col-span-2">
+                <div className="mb-4 text-4xl">📢</div>
+                <h3 className="text-xl font-bold text-navy">No Announcements Yet</h3>
+                <p className="mt-2 text-sm text-text-muted">
+                  Check back soon for updates from our leadership team.
+                </p>
+              </div>
             </div>
-            <div className="mt-10 text-center">
+            <div className="mt-10 flex justify-center gap-4">
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full bg-navy px-8 py-4 text-sm font-semibold text-white transition hover:bg-navy-mid"
               >
                 <Calendar className="h-4 w-4" />
-                View Full Calendar
+                View Events &amp; Calendar
               </Link>
             </div>
           </div>

@@ -52,9 +52,9 @@ const navGroups: NavGroup[] = [
     label: 'Resources',
     links: [
       { label: 'Training Resources', href: '/resources' },
+      { label: 'Prayer Resources', href: '/prayer' },
       { label: 'VEYM Website', href: 'https://veym.net' },
-      { label: 'Liên Đoàn Biển Đức', href: 'https://www.liendoanbienduc.org' },
-      { label: 'Our Lady of Lavang', href: 'https://www.lavangabq.org' }
+      { label: 'Liên Đoàn Biển Đức', href: 'https://www.liendoanbienduc.org' }
     ]
   }
 ];
@@ -97,8 +97,11 @@ export default function Nav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 text-base font-semibold text-gold" onClick={closeMobile}>
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold/20 text-lg text-gold">
-            ✝
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold/20 text-gold">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+              <path d="M11 2h2v5h5v2h-5v13h-2V9H6V7h5z" />
+              <circle cx="12" cy="9" r="3.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+            </svg>
           </span>
           <span className="hidden sm:inline">TNTT · Đoàn Emmanuel</span>
           <span className="sm:hidden">Đoàn Emmanuel</span>
