@@ -51,8 +51,8 @@ const navGroups: NavGroup[] = [
   {
     label: 'Resources',
     links: [
-      { label: 'Training Resources', href: '/resources' },
       { label: 'Prayer Resources', href: '/prayer' },
+      { label: 'Training Resources', href: '/resources' },
       { label: 'VEYM Website', href: 'https://veym.net' },
       { label: 'Liên Đoàn Biển Đức', href: 'https://www.liendoanbienduc.org' }
     ]

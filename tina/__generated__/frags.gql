@@ -61,6 +61,26 @@ fragment ResourceParts on Resource {
   body
 }
 
+fragment AnnouncementsParts on Announcements {
+  __typename
+  items {
+    __typename
+    title
+    message
+    date
+    pinned
+  }
+}
+
+fragment PopeIntentionParts on PopeIntention {
+  __typename
+  month
+  title
+  text
+  source
+  sourceUrl
+}
+
 fragment GalleryParts on Gallery {
   __typename
   instagramHandle

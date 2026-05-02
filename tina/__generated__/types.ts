@@ -90,6 +90,10 @@ export type Query = {
   divisionConnection: DivisionConnection;
   resource: Resource;
   resourceConnection: ResourceConnection;
+  announcements: Announcements;
+  announcementsConnection: AnnouncementsConnection;
+  popeIntention: PopeIntention;
+  popeIntentionConnection: PopeIntentionConnection;
   gallery: Gallery;
   galleryConnection: GalleryConnection;
 };
@@ -176,6 +180,36 @@ export type QueryResourceConnectionArgs = {
 };
 
 
+export type QueryAnnouncementsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryAnnouncementsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AnnouncementsFilter>;
+};
+
+
+export type QueryPopeIntentionArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPopeIntentionConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PopeIntentionFilter>;
+};
+
+
 export type QueryGalleryArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -195,6 +229,8 @@ export type DocumentFilter = {
   event?: InputMaybe<EventFilter>;
   division?: InputMaybe<DivisionFilter>;
   resource?: InputMaybe<ResourceFilter>;
+  announcements?: InputMaybe<AnnouncementsFilter>;
+  popeIntention?: InputMaybe<PopeIntentionFilter>;
   gallery?: InputMaybe<GalleryFilter>;
 };
 
@@ -235,7 +271,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Site | Event | Division | Resource | Gallery | Folder;
+export type DocumentNode = Site | Event | Division | Resource | Announcements | PopeIntention | Gallery | Folder;
 
 export type SiteHero = {
   __typename?: 'SiteHero';
@@ -466,6 +502,84 @@ export type ResourceConnection = Connection & {
   edges?: Maybe<Array<Maybe<ResourceConnectionEdges>>>;
 };
 
+export type AnnouncementsItems = {
+  __typename?: 'AnnouncementsItems';
+  title: Scalars['String']['output'];
+  message: Scalars['String']['output'];
+  date?: Maybe<Scalars['String']['output']>;
+  pinned?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type Announcements = Node & Document & {
+  __typename?: 'Announcements';
+  items?: Maybe<Array<Maybe<AnnouncementsItems>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type AnnouncementsItemsFilter = {
+  title?: InputMaybe<StringFilter>;
+  message?: InputMaybe<StringFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  pinned?: InputMaybe<BooleanFilter>;
+};
+
+export type AnnouncementsFilter = {
+  items?: InputMaybe<AnnouncementsItemsFilter>;
+};
+
+export type AnnouncementsConnectionEdges = {
+  __typename?: 'AnnouncementsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Announcements>;
+};
+
+export type AnnouncementsConnection = Connection & {
+  __typename?: 'AnnouncementsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<AnnouncementsConnectionEdges>>>;
+};
+
+export type PopeIntention = Node & Document & {
+  __typename?: 'PopeIntention';
+  month: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  text: Scalars['String']['output'];
+  source?: Maybe<Scalars['String']['output']>;
+  sourceUrl?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type PopeIntentionFilter = {
+  month?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  source?: InputMaybe<StringFilter>;
+  sourceUrl?: InputMaybe<StringFilter>;
+};
+
+export type PopeIntentionConnectionEdges = {
+  __typename?: 'PopeIntentionConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<PopeIntention>;
+};
+
+export type PopeIntentionConnection = Connection & {
+  __typename?: 'PopeIntentionConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<PopeIntentionConnectionEdges>>>;
+};
+
 export type GalleryPosts = {
   __typename?: 'GalleryPosts';
   url?: Maybe<Scalars['String']['output']>;
@@ -519,6 +633,10 @@ export type Mutation = {
   createDivision: Division;
   updateResource: Resource;
   createResource: Resource;
+  updateAnnouncements: Announcements;
+  createAnnouncements: Announcements;
+  updatePopeIntention: PopeIntention;
+  createPopeIntention: PopeIntention;
   updateGallery: Gallery;
   createGallery: Gallery;
 };
@@ -605,6 +723,30 @@ export type MutationCreateResourceArgs = {
 };
 
 
+export type MutationUpdateAnnouncementsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AnnouncementsMutation;
+};
+
+
+export type MutationCreateAnnouncementsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AnnouncementsMutation;
+};
+
+
+export type MutationUpdatePopeIntentionArgs = {
+  relativePath: Scalars['String']['input'];
+  params: PopeIntentionMutation;
+};
+
+
+export type MutationCreatePopeIntentionArgs = {
+  relativePath: Scalars['String']['input'];
+  params: PopeIntentionMutation;
+};
+
+
 export type MutationUpdateGalleryArgs = {
   relativePath: Scalars['String']['input'];
   params: GalleryMutation;
@@ -621,6 +763,8 @@ export type DocumentUpdateMutation = {
   event?: InputMaybe<EventMutation>;
   division?: InputMaybe<DivisionMutation>;
   resource?: InputMaybe<ResourceMutation>;
+  announcements?: InputMaybe<AnnouncementsMutation>;
+  popeIntention?: InputMaybe<PopeIntentionMutation>;
   gallery?: InputMaybe<GalleryMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -630,6 +774,8 @@ export type DocumentMutation = {
   event?: InputMaybe<EventMutation>;
   division?: InputMaybe<DivisionMutation>;
   resource?: InputMaybe<ResourceMutation>;
+  announcements?: InputMaybe<AnnouncementsMutation>;
+  popeIntention?: InputMaybe<PopeIntentionMutation>;
   gallery?: InputMaybe<GalleryMutation>;
 };
 
@@ -697,6 +843,25 @@ export type ResourceMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type AnnouncementsItemsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  pinned?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type AnnouncementsMutation = {
+  items?: InputMaybe<Array<InputMaybe<AnnouncementsItemsMutation>>>;
+};
+
+export type PopeIntentionMutation = {
+  month?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  source?: InputMaybe<Scalars['String']['input']>;
+  sourceUrl?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type GalleryPostsMutation = {
   url?: InputMaybe<Scalars['String']['input']>;
   caption?: InputMaybe<Scalars['String']['input']>;
@@ -714,6 +879,10 @@ export type EventPartsFragment = { __typename: 'Event', title: string, date: str
 export type DivisionPartsFragment = { __typename: 'Division', title: string, subtitle?: string | null, color: string, motto?: string | null, description: string, details?: string | null, image?: string | null, body?: any | null };
 
 export type ResourcePartsFragment = { __typename: 'Resource', title: string, category: string, description?: string | null, externalUrl?: string | null, file?: string | null, body?: any | null };
+
+export type AnnouncementsPartsFragment = { __typename: 'Announcements', items?: Array<{ __typename: 'AnnouncementsItems', title: string, message: string, date?: string | null, pinned?: boolean | null } | null> | null };
+
+export type PopeIntentionPartsFragment = { __typename: 'PopeIntention', month: string, title: string, text: string, source?: string | null, sourceUrl?: string | null };
 
 export type GalleryPartsFragment = { __typename: 'Gallery', instagramHandle?: string | null, posts?: Array<{ __typename: 'GalleryPosts', url?: string | null, caption?: string | null } | null> | null };
 
@@ -792,6 +961,44 @@ export type ResourceConnectionQueryVariables = Exact<{
 
 
 export type ResourceConnectionQuery = { __typename?: 'Query', resourceConnection: { __typename?: 'ResourceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ResourceConnectionEdges', cursor: string, node?: { __typename: 'Resource', id: string, title: string, category: string, description?: string | null, externalUrl?: string | null, file?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type AnnouncementsQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type AnnouncementsQuery = { __typename?: 'Query', announcements: { __typename: 'Announcements', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, items?: Array<{ __typename: 'AnnouncementsItems', title: string, message: string, date?: string | null, pinned?: boolean | null } | null> | null } };
+
+export type AnnouncementsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AnnouncementsFilter>;
+}>;
+
+
+export type AnnouncementsConnectionQuery = { __typename?: 'Query', announcementsConnection: { __typename?: 'AnnouncementsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AnnouncementsConnectionEdges', cursor: string, node?: { __typename: 'Announcements', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, items?: Array<{ __typename: 'AnnouncementsItems', title: string, message: string, date?: string | null, pinned?: boolean | null } | null> | null } | null } | null> | null } };
+
+export type PopeIntentionQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type PopeIntentionQuery = { __typename?: 'Query', popeIntention: { __typename: 'PopeIntention', id: string, month: string, title: string, text: string, source?: string | null, sourceUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type PopeIntentionConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PopeIntentionFilter>;
+}>;
+
+
+export type PopeIntentionConnectionQuery = { __typename?: 'Query', popeIntentionConnection: { __typename?: 'PopeIntentionConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PopeIntentionConnectionEdges', cursor: string, node?: { __typename: 'PopeIntention', id: string, month: string, title: string, text: string, source?: string | null, sourceUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type GalleryQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -877,6 +1084,28 @@ export const ResourcePartsFragmentDoc = gql`
   externalUrl
   file
   body
+}
+    `;
+export const AnnouncementsPartsFragmentDoc = gql`
+    fragment AnnouncementsParts on Announcements {
+  __typename
+  items {
+    __typename
+    title
+    message
+    date
+    pinned
+  }
+}
+    `;
+export const PopeIntentionPartsFragmentDoc = gql`
+    fragment PopeIntentionParts on PopeIntention {
+  __typename
+  month
+  title
+  text
+  source
+  sourceUrl
 }
     `;
 export const GalleryPartsFragmentDoc = gql`
@@ -1118,6 +1347,120 @@ export const ResourceConnectionDocument = gql`
   }
 }
     ${ResourcePartsFragmentDoc}`;
+export const AnnouncementsDocument = gql`
+    query announcements($relativePath: String!) {
+  announcements(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...AnnouncementsParts
+  }
+}
+    ${AnnouncementsPartsFragmentDoc}`;
+export const AnnouncementsConnectionDocument = gql`
+    query announcementsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AnnouncementsFilter) {
+  announcementsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...AnnouncementsParts
+      }
+    }
+  }
+}
+    ${AnnouncementsPartsFragmentDoc}`;
+export const PopeIntentionDocument = gql`
+    query popeIntention($relativePath: String!) {
+  popeIntention(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PopeIntentionParts
+  }
+}
+    ${PopeIntentionPartsFragmentDoc}`;
+export const PopeIntentionConnectionDocument = gql`
+    query popeIntentionConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PopeIntentionFilter) {
+  popeIntentionConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...PopeIntentionParts
+      }
+    }
+  }
+}
+    ${PopeIntentionPartsFragmentDoc}`;
 export const GalleryDocument = gql`
     query gallery($relativePath: String!) {
   gallery(relativePath: $relativePath) {
@@ -1201,6 +1544,18 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     resourceConnection(variables?: ResourceConnectionQueryVariables, options?: C): Promise<{data: ResourceConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ResourceConnectionQueryVariables, query: string}> {
         return requester<{data: ResourceConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ResourceConnectionQueryVariables, query: string}, ResourceConnectionQueryVariables>(ResourceConnectionDocument, variables, options);
+      },
+    announcements(variables: AnnouncementsQueryVariables, options?: C): Promise<{data: AnnouncementsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AnnouncementsQueryVariables, query: string}> {
+        return requester<{data: AnnouncementsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AnnouncementsQueryVariables, query: string}, AnnouncementsQueryVariables>(AnnouncementsDocument, variables, options);
+      },
+    announcementsConnection(variables?: AnnouncementsConnectionQueryVariables, options?: C): Promise<{data: AnnouncementsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AnnouncementsConnectionQueryVariables, query: string}> {
+        return requester<{data: AnnouncementsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AnnouncementsConnectionQueryVariables, query: string}, AnnouncementsConnectionQueryVariables>(AnnouncementsConnectionDocument, variables, options);
+      },
+    popeIntention(variables: PopeIntentionQueryVariables, options?: C): Promise<{data: PopeIntentionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PopeIntentionQueryVariables, query: string}> {
+        return requester<{data: PopeIntentionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PopeIntentionQueryVariables, query: string}, PopeIntentionQueryVariables>(PopeIntentionDocument, variables, options);
+      },
+    popeIntentionConnection(variables?: PopeIntentionConnectionQueryVariables, options?: C): Promise<{data: PopeIntentionConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PopeIntentionConnectionQueryVariables, query: string}> {
+        return requester<{data: PopeIntentionConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PopeIntentionConnectionQueryVariables, query: string}, PopeIntentionConnectionQueryVariables>(PopeIntentionConnectionDocument, variables, options);
       },
     gallery(variables: GalleryQueryVariables, options?: C): Promise<{data: GalleryQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: GalleryQueryVariables, query: string}> {
         return requester<{data: GalleryQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: GalleryQueryVariables, query: string}, GalleryQueryVariables>(GalleryDocument, variables, options);

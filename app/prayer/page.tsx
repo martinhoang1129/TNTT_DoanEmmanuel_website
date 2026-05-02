@@ -7,14 +7,6 @@ export const metadata = {
   description: "Prayer resources and the Pope's monthly prayer intention for Đoàn Emmanuel TNTT."
 };
 
-const currentMonth = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
-
-const popeIntention = {
-  month: 'May 2025',
-  title: 'For Catholic Movements and Associations',
-  text: 'We pray that Catholic movements and associations may rediscover, each day, their founding mission, proposing it anew through creative means consonant with the present time and the needs of the people.',
-  source: 'Pope Francis — The Pope Video'
-};
 
 const prayers = [
   {
@@ -54,38 +46,6 @@ export default function PrayerPage() {
             <p className="mx-auto mt-4 max-w-2xl text-base text-white/60">
               Prayers, intentions, and spiritual resources for our TNTT community.
             </p>
-          </div>
-        </section>
-
-        {/* Pope's Monthly Intention */}
-        <section className="py-16">
-          <div className="mx-auto max-w-4xl px-6">
-            <div className="overflow-hidden rounded-2xl border border-gold/20 bg-white shadow-md">
-              <div className="bg-gradient-to-r from-gold to-amber-500 px-8 py-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">🕊️</span>
-                  <div>
-                    <h2 className="text-lg font-bold text-navy">Pope&apos;s Prayer Intention</h2>
-                    <p className="text-sm font-medium text-navy/70">{popeIntention.month}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-navy">{popeIntention.title}</h3>
-                <blockquote className="mt-4 border-l-4 border-gold pl-6 text-base italic leading-8 text-text-muted">
-                  &ldquo;{popeIntention.text}&rdquo;
-                </blockquote>
-                <p className="mt-4 text-xs uppercase tracking-[0.2em] text-gold">{popeIntention.source}</p>
-                <a
-                  href="https://www.popesprayer.va/prayer-intentions/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy transition hover:bg-navy hover:text-white"
-                >
-                  View All Monthly Intentions →
-                </a>
-              </div>
-            </div>
           </div>
         </section>
 

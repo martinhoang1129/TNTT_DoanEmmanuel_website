@@ -139,6 +139,45 @@ export function getResources(): ResourceItem[] {
   });
 }
 
+export type AnnouncementItem = {
+  title: string;
+  message: string;
+  date?: string;
+  pinned?: boolean;
+};
+
+export type AnnouncementsData = {
+  items: AnnouncementItem[];
+};
+
+export function getAnnouncements(): AnnouncementsData {
+  const filePath = path.join(contentRoot, 'announcements.json');
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(raw) as AnnouncementsData;
+  } catch {
+    return { items: [] };
+  }
+}
+
+export type PopeIntention = {
+  month: string;
+  title: string;
+  text: string;
+  source: string;
+  sourceUrl?: string;
+};
+
+export function getPopeIntention(): PopeIntention {
+  const filePath = path.join(contentRoot, 'pope-intention.json');
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(raw) as PopeIntention;
+  } catch {
+    return { month: '', title: '', text: '', source: '' };
+  }
+}
+
 export type GalleryData = {
   instagramHandle: string;
   posts: Array<{ url: string; caption?: string }>;

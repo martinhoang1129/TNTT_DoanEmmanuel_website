@@ -150,6 +150,64 @@ var config_default = defineConfig({
           { type: "rich-text", name: "body", label: "Content", isBody: true }
         ]
       },
+      // ─── Announcements ───
+      {
+        name: "announcements",
+        label: "Announcements",
+        path: "content",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          },
+          global: true
+        },
+        match: {
+          include: "announcements"
+        },
+        fields: [
+          {
+            type: "object",
+            name: "items",
+            label: "Announcements",
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "Announcement" })
+            },
+            fields: [
+              { type: "string", name: "title", label: "Title", required: true },
+              { type: "string", name: "message", label: "Message", ui: { component: "textarea" }, required: true },
+              { type: "datetime", name: "date", label: "Date" },
+              { type: "boolean", name: "pinned", label: "Pin to Top" }
+            ]
+          }
+        ]
+      },
+      // ─── Pope's Monthly Prayer Intention ───
+      {
+        name: "popeIntention",
+        label: "Pope's Prayer Intention",
+        path: "content",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          },
+          global: true
+        },
+        match: {
+          include: "pope-intention"
+        },
+        fields: [
+          { type: "string", name: "month", label: "Month & Year (e.g. May 2026)", required: true },
+          { type: "string", name: "title", label: "Intention Title", required: true },
+          { type: "string", name: "text", label: "Intention Text", ui: { component: "textarea" }, required: true },
+          { type: "string", name: "source", label: "Source (e.g. Pope Leo XIV \u2014 USCCB Monthly Intentions)" },
+          { type: "string", name: "sourceUrl", label: "Source URL (e.g. https://www.usccb.org/...)" }
+        ]
+      },
       // ─── Instagram Gallery ───
       {
         name: "gallery",

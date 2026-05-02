@@ -62,6 +62,10 @@ type Query {
   divisionConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DivisionFilter): DivisionConnection!
   resource(relativePath: String): Resource!
   resourceConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ResourceFilter): ResourceConnection!
+  announcements(relativePath: String): Announcements!
+  announcementsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AnnouncementsFilter): AnnouncementsConnection!
+  popeIntention(relativePath: String): PopeIntention!
+  popeIntentionConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PopeIntentionFilter): PopeIntentionConnection!
   gallery(relativePath: String): Gallery!
   galleryConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GalleryFilter): GalleryConnection!
 }
@@ -71,6 +75,8 @@ input DocumentFilter {
   event: EventFilter
   division: DivisionFilter
   resource: ResourceFilter
+  announcements: AnnouncementsFilter
+  popeIntention: PopeIntentionFilter
   gallery: GalleryFilter
 }
 
@@ -97,7 +103,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Site | Event | Division | Resource | Gallery | Folder
+union DocumentNode = Site | Event | Division | Resource | Announcements | PopeIntention | Gallery | Folder
 
 type SiteHero {
   eyebrow: String
@@ -311,6 +317,77 @@ type ResourceConnection implements Connection {
   edges: [ResourceConnectionEdges]
 }
 
+type AnnouncementsItems {
+  title: String!
+  message: String!
+  date: String
+  pinned: Boolean
+}
+
+type Announcements implements Node & Document {
+  items: [AnnouncementsItems]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input AnnouncementsItemsFilter {
+  title: StringFilter
+  message: StringFilter
+  date: DatetimeFilter
+  pinned: BooleanFilter
+}
+
+input AnnouncementsFilter {
+  items: AnnouncementsItemsFilter
+}
+
+type AnnouncementsConnectionEdges {
+  cursor: String!
+  node: Announcements
+}
+
+type AnnouncementsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [AnnouncementsConnectionEdges]
+}
+
+type PopeIntention implements Node & Document {
+  month: String!
+  title: String!
+  text: String!
+  source: String
+  sourceUrl: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input PopeIntentionFilter {
+  month: StringFilter
+  title: StringFilter
+  text: StringFilter
+  source: StringFilter
+  sourceUrl: StringFilter
+}
+
+type PopeIntentionConnectionEdges {
+  cursor: String!
+  node: PopeIntention
+}
+
+type PopeIntentionConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [PopeIntentionConnectionEdges]
+}
+
 type GalleryPosts {
   url: String
   caption: String
@@ -359,6 +436,10 @@ type Mutation {
   createDivision(relativePath: String!, params: DivisionMutation!): Division!
   updateResource(relativePath: String!, params: ResourceMutation!): Resource!
   createResource(relativePath: String!, params: ResourceMutation!): Resource!
+  updateAnnouncements(relativePath: String!, params: AnnouncementsMutation!): Announcements!
+  createAnnouncements(relativePath: String!, params: AnnouncementsMutation!): Announcements!
+  updatePopeIntention(relativePath: String!, params: PopeIntentionMutation!): PopeIntention!
+  createPopeIntention(relativePath: String!, params: PopeIntentionMutation!): PopeIntention!
   updateGallery(relativePath: String!, params: GalleryMutation!): Gallery!
   createGallery(relativePath: String!, params: GalleryMutation!): Gallery!
 }
@@ -368,6 +449,8 @@ input DocumentUpdateMutation {
   event: EventMutation
   division: DivisionMutation
   resource: ResourceMutation
+  announcements: AnnouncementsMutation
+  popeIntention: PopeIntentionMutation
   gallery: GalleryMutation
   relativePath: String
 }
@@ -377,6 +460,8 @@ input DocumentMutation {
   event: EventMutation
   division: DivisionMutation
   resource: ResourceMutation
+  announcements: AnnouncementsMutation
+  popeIntention: PopeIntentionMutation
   gallery: GalleryMutation
 }
 
@@ -442,6 +527,25 @@ input ResourceMutation {
   externalUrl: String
   file: String
   body: JSON
+}
+
+input AnnouncementsItemsMutation {
+  title: String
+  message: String
+  date: String
+  pinned: Boolean
+}
+
+input AnnouncementsMutation {
+  items: [AnnouncementsItemsMutation]
+}
+
+input PopeIntentionMutation {
+  month: String
+  title: String
+  text: String
+  source: String
+  sourceUrl: String
 }
 
 input GalleryPostsMutation {

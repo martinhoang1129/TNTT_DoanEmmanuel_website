@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { Calendar, ArrowRight, MapPin, Clock } from 'lucide-react';
-import type { DivisionItem, EventItem, HomeContent, GalleryData } from '@/lib/content';
+import type { DivisionItem, EventItem, HomeContent, GalleryData, AnnouncementsData, PopeIntention } from '@/lib/content';
 import InstagramFeed from '@/components/InstagramFeed';
 
 type HomePageClientProps = {
@@ -13,6 +13,8 @@ type HomePageClientProps = {
   divisions: DivisionItem[];
   events: EventItem[];
   gallery: GalleryData;
+  announcements: AnnouncementsData;
+  popeIntention: PopeIntention;
 };
 
 const divisionColors: Record<string, string> = {
@@ -31,7 +33,7 @@ const divisionBorderColors: Record<string, string> = {
   huynhtruong: 'border-red-500/50 hover:border-red-400'
 };
 
-export default function HomePageClient({ homeContent, divisions, events, gallery }: HomePageClientProps) {
+export default function HomePageClient({ homeContent, divisions, events, gallery, announcements, popeIntention }: HomePageClientProps) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -95,41 +97,78 @@ export default function HomePageClient({ homeContent, divisions, events, gallery
             </div>
           </div>
 
-          {/* Upcoming events banner */}
-          {events.length > 0 && (
-            <div className="relative mx-auto mt-16 max-w-4xl px-6">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                <div className="mb-4 flex items-center justify-between">
-                  <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-gold">
-                    <Calendar className="h-4 w-4" />
-                    Upcoming Events
-                  </h3>
-                  <Link href="/events" className="text-xs uppercase tracking-[0.15em] text-white/60 transition hover:text-gold">
-                    View Calendar →
-                  </Link>
+          {/* Announcements banner */}
+          <div className="relative mx-auto mt-16 max-w-5xl px-6">
+            <div className="overflow-hidden rounded-2xl border border-gold/20 bg-gradient-to-br from-[#1a2744] to-[#0f1d35] shadow-xl">
+              <div className="flex items-center gap-3 border-b border-white/10 bg-white/5 px-6 py-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold/20">
+                  <span className="text-sm">📢</span>
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {events.slice(0, 2).map((event) => (
-                    <Link
-                      key={event.slug}
-                      href="/events"
-                      className="flex items-start gap-3 rounded-xl bg-white/5 p-4 transition hover:bg-white/10"
-                    >
-                      <div className="flex h-12 w-12 flex-shrink-0 flex-col items-center justify-center rounded-lg bg-gold/20 text-gold">
-                        <span className="text-xs font-bold leading-none">{new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</span>
-                        <span className="text-lg font-bold leading-none">{new Date(event.date).getDate()}</span>
+                <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-gold">Announcements</h3>
+              </div>
+              {announcements.items.length > 0 ? (
+                <div className="divide-y divide-white/5">
+                  {announcements.items.map((item, i) => (
+                    <div key={i} className="group flex items-start gap-4 px-6 py-5 transition hover:bg-white/[0.03]">
+                      {item.pinned && (
+                        <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gold/20">
+                          <span className="text-xs">📌</span>
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-3">
+                          <h4 className="font-bold text-white">{item.title}</h4>
+                          {item.date && (
+                            <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/50">
+                              {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-1.5 text-sm leading-relaxed text-white/55">{item.message}</p>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold text-white">{event.title}</p>
-                        <p className="mt-1 text-xs text-white/50">{event.description}</p>
-                      </div>
-                    </Link>
+                    </div>
                   ))}
+                </div>
+              ) : (
+                <div className="px-6 py-8 text-center">
+                  <p className="text-sm text-white/40">No announcements at this time.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Pope's Prayer Intention */}
+        {popeIntention.title && (
+          <section className="bg-gradient-to-r from-amber-50 to-gold/10 py-16">
+            <div className="mx-auto max-w-4xl px-6">
+              <div className="overflow-hidden rounded-2xl border border-gold/20 bg-white shadow-md">
+                <div className="bg-gradient-to-r from-gold to-amber-500 px-8 py-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">🕊️</span>
+                    <div>
+                      <h2 className="text-lg font-bold text-navy">Pope&apos;s Prayer Intention</h2>
+                      <p className="text-sm font-medium text-navy/70">{popeIntention.month}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-xl font-bold text-navy sm:text-2xl">{popeIntention.title}</h3>
+                  <blockquote className="mt-4 border-l-4 border-gold pl-6 text-base italic leading-8 text-text-muted">
+                    &ldquo;{popeIntention.text}&rdquo;
+                  </blockquote>
+                  <p className="mt-4 text-xs uppercase tracking-[0.2em] text-gold">{popeIntention.source}</p>
+                  <Link
+                    href="/prayer"
+                    className="mt-6 inline-flex items-center gap-2 rounded-full border border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy transition hover:bg-navy hover:text-white"
+                  >
+                    View All Prayer Resources →
+                  </Link>
                 </div>
               </div>
             </div>
-          )}
-        </section>
+          </section>
+        )}
 
         {/* Divisions */}
         <section id="divisions" className="bg-navy py-24 text-white">
@@ -200,34 +239,47 @@ export default function HomePageClient({ homeContent, divisions, events, gallery
           </div>
         </section>
 
-        {/* Announcements */}
-        <section id="announcements" className="bg-white py-24">
+        {/* Upcoming Events */}
+        <section id="events" className="bg-white py-24">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-14 text-center">
               <p className="mx-auto mb-3 inline-flex items-center justify-center rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-gold">
-                Updates
+                Calendar
               </p>
-              <h2 className="text-4xl font-bold text-navy sm:text-5xl">Announcements</h2>
+              <h2 className="text-4xl font-bold text-navy sm:text-5xl">Upcoming Events</h2>
               <p className="mx-auto mt-4 max-w-2xl text-base text-text-muted">
-                Stay up to date with the latest news from Đoàn Emmanuel.
+                Stay connected with all Đoàn activities and celebrations.
               </p>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-10 text-center lg:col-span-2">
-                <div className="mb-4 text-4xl">📢</div>
-                <h3 className="text-xl font-bold text-navy">No Announcements Yet</h3>
-                <p className="mt-2 text-sm text-text-muted">
-                  Check back soon for updates from our leadership team.
-                </p>
-              </div>
+              {events.map((event) => (
+                <Link
+                  key={event.slug}
+                  href="/events"
+                  className="group flex gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded-xl bg-navy text-white">
+                    <span className="text-xs font-bold uppercase text-gold">{new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</span>
+                    <span className="text-2xl font-bold">{new Date(event.date).getDate()}</span>
+                    <span className="text-xs text-white/50">{new Date(event.date).getFullYear()}</span>
+                  </div>
+                  <div>
+                    <div className="mb-2 inline-flex rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
+                      {event.type}
+                    </div>
+                    <h3 className="text-lg font-bold text-navy group-hover:text-gold">{event.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-text-muted">{event.description}</p>
+                  </div>
+                </Link>
+              ))}
             </div>
-            <div className="mt-10 flex justify-center gap-4">
+            <div className="mt-10 text-center">
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full bg-navy px-8 py-4 text-sm font-semibold text-white transition hover:bg-navy-mid"
               >
                 <Calendar className="h-4 w-4" />
-                View Events &amp; Calendar
+                View Full Calendar
               </Link>
             </div>
           </div>
