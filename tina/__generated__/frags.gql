@@ -1,0 +1,72 @@
+fragment SiteParts on Site {
+  __typename
+  hero {
+    __typename
+    eyebrow
+    title
+    subtitle
+    caption
+  }
+  about {
+    __typename
+    headline
+    description
+  }
+  divisionIntro {
+    __typename
+    headline
+    description
+  }
+  eventIntro {
+    __typename
+    headline
+    description
+  }
+  join {
+    __typename
+    headline
+    description
+  }
+}
+
+fragment EventParts on Event {
+  __typename
+  title
+  date
+  type
+  description
+  image
+  body
+}
+
+fragment DivisionParts on Division {
+  __typename
+  title
+  subtitle
+  color
+  motto
+  description
+  details
+  image
+  body
+}
+
+fragment ResourceParts on Resource {
+  __typename
+  title
+  category
+  description
+  externalUrl
+  file
+  body
+}
+
+fragment GalleryParts on Gallery {
+  __typename
+  instagramHandle
+  posts {
+    __typename
+    url
+    caption
+  }
+}

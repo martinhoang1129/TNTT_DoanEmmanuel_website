@@ -5,12 +5,14 @@ import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { Calendar, ArrowRight, MapPin, Clock } from 'lucide-react';
-import type { DivisionItem, EventItem, HomeContent } from '@/lib/content';
+import type { DivisionItem, EventItem, HomeContent, GalleryData } from '@/lib/content';
+import InstagramFeed from '@/components/InstagramFeed';
 
 type HomePageClientProps = {
   homeContent: HomeContent;
   divisions: DivisionItem[];
   events: EventItem[];
+  gallery: GalleryData;
 };
 
 const divisionColors: Record<string, string> = {
@@ -29,7 +31,7 @@ const divisionBorderColors: Record<string, string> = {
   huynhtruong: 'border-red-500/50 hover:border-red-400'
 };
 
-export default function HomePageClient({ homeContent, divisions, events }: HomePageClientProps) {
+export default function HomePageClient({ homeContent, divisions, events, gallery }: HomePageClientProps) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -278,6 +280,9 @@ export default function HomePageClient({ homeContent, divisions, events }: HomeP
             </div>
           </div>
         </section>
+
+        {/* Instagram Gallery */}
+        <InstagramFeed handle={gallery.instagramHandle} posts={gallery.posts} />
 
         {/* Join Form */}
         <section id="join" className="bg-navy py-24 text-white">

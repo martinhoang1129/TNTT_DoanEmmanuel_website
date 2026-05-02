@@ -111,3 +111,45 @@ export function getDivisionBySlug(slug: string): DivisionItem | null {
 export function getDivisionSlugs(): string[] {
   return getDivisions().map((division) => division.slug);
 }
+
+export type ResourceItem = {
+  slug: string;
+  title: string;
+  category: string;
+  description: string;
+  externalUrl?: string;
+  body: string;
+};
+
+export function getResources(): ResourceItem[] {
+  const resourcesDir = path.join(contentRoot, 'resources');
+  if (!fs.existsSync(resourcesDir)) return [];
+  const files = fs.readdirSync(resourcesDir).filter((file) => file.endsWith('.md'));
+  return files.map((file) => {
+    const raw = fs.readFileSync(path.join(resourcesDir, file), 'utf8');
+    const { data, content } = matter(raw);
+    return {
+      slug: file.replace(/\.md$/, ''),
+      title: String(data.title || ''),
+      category: String(data.category || 'other'),
+      description: String(data.description || ''),
+      externalUrl: data.externalUrl ? String(data.externalUrl) : undefined,
+      body: String(content).trim()
+    };
+  });
+}
+
+export type GalleryData = {
+  instagramHandle: string;
+  posts: Array<{ url: string; caption?: string }>;
+};
+
+export function getGallery(): GalleryData {
+  const filePath = path.join(contentRoot, 'gallery.json');
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(raw) as GalleryData;
+  } catch {
+    return { instagramHandle: 'tnttemmanuel', posts: [] };
+  }
+}

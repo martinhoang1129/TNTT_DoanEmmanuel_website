@@ -19,8 +19,8 @@ function FacebookIcon({ className }: { className?: string }) {
 }
 
 const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/PLACEHOLDER',
-  facebook: 'https://www.facebook.com/PLACEHOLDER'
+  instagram: 'https://www.instagram.com/tnttemmanuel',
+  facebook: 'https://www.facebook.com/tnttemmanuel'
 };
 
 export default function Footer() {

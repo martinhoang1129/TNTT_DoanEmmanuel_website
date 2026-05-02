@@ -33,8 +33,8 @@ const navGroups: NavGroup[] = [
     label: 'About',
     links: [
       { label: 'Our Mission', href: '/#mission' },
-      { label: 'Our Team', href: '/#about' },
-      { label: 'Our History', href: '/#about' }
+      { label: 'Our Team', href: '/about/team' },
+      { label: 'Our History', href: '/about/history' }
     ]
   },
   {
@@ -51,6 +51,7 @@ const navGroups: NavGroup[] = [
   {
     label: 'Resources',
     links: [
+      { label: 'Training Resources', href: '/resources' },
       { label: 'VEYM Website', href: 'https://veym.net' },
       { label: 'Liên Đoàn Biển Đức', href: 'https://www.liendoanbienduc.org' },
       { label: 'Our Lady of Lavang', href: 'https://www.lavangabq.org' }
@@ -59,8 +60,8 @@ const navGroups: NavGroup[] = [
 ];
 
 const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/PLACEHOLDER',
-  facebook: 'https://www.facebook.com/PLACEHOLDER'
+  instagram: 'https://www.instagram.com/tnttemmanuel',
+  facebook: 'https://www.facebook.com/tnttemmanuel'
 };
 
 export default function Nav() {
